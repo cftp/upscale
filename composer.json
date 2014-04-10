@@ -1,0 +1,22 @@
+{
+    "name"       : "cftp/upscale",
+    "description": "Provides a minimum height and width for images and upscales uploaded images that are too small",
+    "keywords"   : ["wordpress"],
+    "type"       : "wordpress-plugin",
+    "homepage"   : "https://github.com/cftp/upscale",
+    "license"    : "GPL-2.0",
+    "authors"    : [
+        {
+            "name"    : "Code For The People",
+            "homepage": "http://codeforthepeople.com"
+        }
+    ],
+    "support"    : {
+        "issues": "https://github.com/cftp/upscale/issues",
+        "source": "https://github.com/cftp/upscale"
+    },
+    "require"    : {
+        "php": ">=5.2.4",
+        "composer/installers": "~1.0"
+    }
+}
