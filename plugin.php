@@ -81,51 +81,6 @@ function cftp_upscale_tiny_images($file){
 }
 add_filter('wp_handle_upload_prefilter','cftp_upscale_tiny_images');
 
-function cftp_upscale_bits($upload_bits) {
-
-	$ext = pathinfo($upload_bits['name'], PATHINFO_EXTENSION);
-
-	if ($ext == 'jpg' || $ext == 'jpeg' || $ext == 'png') {
-
-		$image = new Imagick();
-		$image->readimageblob($upload_bits['bits']);
-		$d = $image->getImageGeometry();
-		$width = $d['width'];
-		$height = $d['height'];
-
-		$minwidth = apply_filters( 'cftp_upscale_minimum_width', 500.0 );
-		$minheight = apply_filters( 'cftp_upscale_minimum_height', 500.0 );
-		if ( ( $width < $minwidth ) || ( $height < $minheight ) ) {
-
-			if ( $width < $minwidth ) {
-				$height = cftp_dimensions_upscale( $height, $width, $minwidth );
-				$width = $minwidth;
-			}
-			if ( $height < $minheight ) {
-				$width = cftp_dimensions_upscale( $width, $height, $minheight );
-				$height = $minheight;
-			}
-
-			$image->resizeImage($width,$height,Imagick::FILTER_LANCZOS,1);
-			$bits = $image->getImageBlob();
-
-			if (strlen($bits)) {
-				$da = $image->getImageGeometry();
-				$upload_bits['bits'] = $bits;
-				$upload_bits['name'] = str_replace($d['width']. 'x' .$d['height'], $da['width'] .'x'. $da['height'], $upload_bits['name']);
-			}
-
-			$image->clear();
-			$image->destroy();
-
-		}
-
-	}
-
-	return $upload_bits;
-}
-add_filter( 'wp_upload_bits', 'cftp_upscale_bits' );
-
 function cftp_dimensions_upscale( $x, $y, $new_y ) {
 	$ratio = $x/$y;
 	return $ratio*$new_y;
