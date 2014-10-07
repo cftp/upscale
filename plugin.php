@@ -80,6 +80,7 @@ function cftp_upscale_tiny_images($file){
 	return $file;
 }
 add_filter('wp_handle_upload_prefilter','cftp_upscale_tiny_images');
+add_filter('wp_handle_sideload_prefilter','cftp_upscale_tiny_images');
 
 function cftp_dimensions_upscale( $x, $y, $new_y ) {
 	$ratio = $x/$y;
