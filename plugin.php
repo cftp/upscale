@@ -3,7 +3,7 @@
  * Plugin Name: Upscale Images
  * Description: Enforces a minimum image size by upscaling images to match minimum dimensions
  * Author: TJNowell
- * Version: 1.0
+ * Version: 1.1
  * Author: Code for the People Ltd
  * Author URI: http://codeforthepeople.com/
  */
