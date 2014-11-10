@@ -46,6 +46,10 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 function cftp_upscale_tiny_images($file){
 	$type = explode('/',$file['type']);
 
+	// cannot reliably upscale a GIF
+	if ( $file['type'] == 'image/gif' )
+		return $file;
+
 	if ( $type[0] == 'image' ) {
 		$filename = $file['tmp_name'];
 		$image = wp_get_image_editor( $filename ); // Return an implementation that extends <tt>WP_Image_Editor</tt>
